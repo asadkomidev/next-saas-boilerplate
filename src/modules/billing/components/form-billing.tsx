@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useTransition } from "react";
+import Link from "next/link";
 
 type Props = {
   plan: Awaited<ReturnType<typeof getUserSubscriptionPlan>>;
@@ -22,7 +23,6 @@ type Props = {
 
 export const BillingForm = ({ plan }: Props) => {
   const [isPending, startTransition] = useTransition();
-  console.log("srv: plan: ", plan);
 
   const onSubmit = () => {
     startTransition(async () => {
@@ -50,12 +50,18 @@ export const BillingForm = ({ plan }: Props) => {
         </CardHeader>
 
         <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
-          <Button type="submit">
-            {isPending ? (
-              <Loader2 className="mr-4 h-4 w-4 animate-spin" />
-            ) : null}
-            {plan.isSubscribed ? "Manage Subscription" : "Upgrade now"}
-          </Button>
+          {plan.isSubscribed ? (
+            <Button type="submit">
+              {isPending ? (
+                <Loader2 className="mr-4 h-4 w-4 animate-spin" />
+              ) : null}
+              {plan.isSubscribed ? "Manage Subscription" : "Upgrade now"}
+            </Button>
+          ) : (
+            <Button asChild>
+              <Link href="/pricing">View Plans</Link>
+            </Button>
+          )}
 
           {plan.isSubscribed ? (
             <p className="rounded-full text-xs font-medium">
