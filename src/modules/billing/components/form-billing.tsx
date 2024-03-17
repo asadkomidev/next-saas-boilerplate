@@ -61,7 +61,7 @@ export const BillingForm = ({ plan }: Props) => {
             <p className="rounded-full text-xs font-medium">
               {plan.isCanceled
                 ? "Your plan will be canceled on "
-                : "Your plan renews on"}
+                : "Your plan renews on "}
               {format(plan.stripeCurrentPeriodEnd!, "MMM dd, yyyy")}.
             </p>
           ) : null}
