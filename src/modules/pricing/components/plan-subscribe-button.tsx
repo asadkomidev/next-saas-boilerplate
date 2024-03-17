@@ -47,15 +47,13 @@ export const PlanSubscribeButton = ({
           Upgrade now
         </Button>
       ) : (
-        <Link
-          href="/auth/signin"
-          className={buttonVariants({
-            className: popular
-              ? "w-full bg-blue-600 text-white hover:bg-blue-700"
-              : "w-full",
+        <Button
+          asChild
+          className={cn("w-full", {
+            "bg-blue-600 text-white hover:bg-blue-700": popular,
           })}>
-          {user ? "Upgrade now" : "Sign in"}
-        </Link>
+          <Link href="/auth/signin">{user ? "Upgrade now" : "Sign in"}</Link>
+        </Button>
       )}
     </div>
   );
