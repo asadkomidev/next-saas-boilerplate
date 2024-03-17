@@ -42,14 +42,15 @@ export const BillingForm = ({ plan }: Props) => {
         onSubmit();
       }}>
       <Card>
-        <CardHeader>
+        <CardHeader className="text-center md:text-start">
           <CardTitle>Subscription Plan</CardTitle>
           <CardDescription>
-            You are currently on the <strong>{plan.name}</strong> plan.
+            You are currently on the{" "}
+            <strong>{plan.isSubscribed ? plan.name : "Free"}</strong> plan.
           </CardDescription>
         </CardHeader>
 
-        <CardFooter className="flex flex-col items-start space-y-2 md:flex-row md:justify-between md:space-x-0">
+        <CardFooter className="flex flex-col items-center space-y-2 md:flex-row md:justify-between md:space-x-0">
           {plan.isSubscribed ? (
             <Button type="submit">
               {isPending ? (
@@ -64,7 +65,12 @@ export const BillingForm = ({ plan }: Props) => {
           )}
 
           {plan.isSubscribed ? (
-            <p className="rounded-full text-xs font-medium">
+            <p
+              className={
+                plan.isCanceled
+                  ? "rounded-full text-xs font-medium text-red-500"
+                  : "rounded-full text-xs font-medium text-green-500"
+              }>
               {plan.isCanceled
                 ? "Your plan will be canceled on "
                 : "Your plan renews on "}

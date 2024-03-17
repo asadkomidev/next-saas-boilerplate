@@ -4,7 +4,7 @@ export const pricingPlans = [
   {
     plan: "Free",
     tagline: "For small side projects.",
-    quota: 10,
+    popular: false,
     features: [
       {
         text: "5 pages per PDF",
@@ -31,7 +31,7 @@ export const pricingPlans = [
   {
     plan: "Plan One",
     tagline: "For larger projects with higher needs.",
-    quota: PLANS.find((p) => p.slug === "plan-one")!.quota,
+    popular: true,
     features: [
       {
         text: "25 pages per PDF",
@@ -56,7 +56,7 @@ export const pricingPlans = [
   {
     plan: "Plan Two",
     tagline: "For the most demanding projects.",
-    quota: PLANS.find((p) => p.slug === "plan-two")!.quota,
+    popular: false,
     features: [
       {
         text: "Unlimited pages per PDF",
